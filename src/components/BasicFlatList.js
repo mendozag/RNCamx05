@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, AppRegistry, FlatList, StyleSheet } from 'react-native';
 import flatListData  from "./FlatListData";
 import * as Firebase from "firebase"
+//Comentario
 
 let firebaseConfig ={    
         apiKey: "AIzaSyAX-G1FkPKL8x0_h27OUFQnCQPKj8mVLz0",
