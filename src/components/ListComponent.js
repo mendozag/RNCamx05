@@ -8,7 +8,7 @@ class ListComponent extends Component {
         return (
             <Container>
                 <Content>
-                    {this.props.lista.map(
+                    {this.props.carreras.map(
                         item => <RowComponent
                                     key={item.id}
                                     item={item}
