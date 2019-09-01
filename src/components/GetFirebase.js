@@ -27,7 +27,7 @@ class HelloFirebase extends Component {
         super();
         this.unsubscribe = null;
         this.state = {
-            isLoading: true,
+            isLoading: "true",
             carreras: []
         };
     }
@@ -57,19 +57,19 @@ class HelloFirebase extends Component {
                     description,
                     editionYear
                 });
-                //console.log('carreras',carreras);
+                console.log('carreras',carreras);
             });
             console.log('carreras3',carreras);
-            this.setState({
-                carreras,
-                isLoading: False
+            this.setState({ 
+                isLoading: "false" 
             })
+            
             console.log('Carreras en el State');
         });
     }
 
     render(){
-        if(this.state.isLoading){
+        if(this.state.isLoading == "true"){
             console.log('En el if State');
             return(
               <View style={styles.activity}>
