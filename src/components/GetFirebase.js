@@ -27,7 +27,7 @@ class HelloFirebase extends Component {
         super();
         this.unsubscribe = null;
         this.state = {
-            isLoading: "true",
+            isLoading: true,
             carreras: []
         };
     }
@@ -60,16 +60,16 @@ class HelloFirebase extends Component {
                 console.log('carreras',carreras);
             });
             console.log('carreras3',carreras);
-            this.setState({ 
-                isLoading: "false" 
-            })
-            
+            this.setState({
+                carreras: carreras,
+                isLoading: false
+            });
             console.log('Carreras en el State');
         });
     }
 
     render(){
-        if(this.state.isLoading == "true"){
+        if(this.state.isLoading){
             console.log('En el if State');
             return(
               <View style={styles.activity}>
