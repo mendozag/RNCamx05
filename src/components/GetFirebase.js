@@ -1,53 +1,41 @@
 import * as firebase from 'firebase';  
 import React, { Component } from 'react';  
-import { View, Text, StyleSheet } from 'react-native';  
+import { View, Text, StyleSheet, FlatList } from 'react-native';  
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Input } from 'native-base';  
-import ListComponent from './ListComponent';
+//import ListComponent from './ListComponent';
 import "firebase/firestore"
+
+/* class FlatListItem extends Component {
+    render() {
+        return (
+            <View style={{
+                flex: 1,
+                backgroundColor: this.props.index % 2 == 0 ? 'gray':'cyan'
+            }}>
+                <Text>Titulo</Text>
+                <Text>Descripcion</Text>
+            </View>
+        )
+    }
+} */
+
 
 class HelloFirebase extends Component {
 
     constructor(){  
         super();
-        //this.ref = firebase.firestore().collection('carreras');
-        //this.unsubscribe = null;
         this.state = {
             isLoading: true,
-            carrera: []
+            carreras: []
         };
-    
     }
-  /*   changeDone = (item) => {
-        console.log(item);
-        this.state.lista = this.state.lista.filter(i => i !== item);
-        this.state.lista.push(item);
-        this.setState({lista: this.state.lista});
-    } */
-
-  /*   agregarItem = () => {
-        let nuevo = this.state.nuevo
-        nuevo = {id:nuevo,name:nuevo,done:false};
-        //firebase.database().ref('items').push(nuevo);
-        //firebase.firestore.collection(items).add(nuevo);
-        var addYourDoc = firebase.firestore().collection('items').add(
-            nuevo
-          ).then(ref => {
-            console.log('document ID: ', ref.name);
-          });
-        this.state.lista.push(nuevo);
-        this.setState({lista: this.state.lista});
-        console.log(nuevo);
-
-
-    } */
-
     render(){
+        console.log('Entra después del constructor');
         var carreras = firebase.firestore().collection('carreras').get().then(function(querySnapshot) {
             const carreras = [];
             querySnapshot.forEach(function(doc) {
-                // doc.data() is never undefined for query doc snapshots
                 const { title, description, editionYear} = doc.data();
-                console.log(doc.id, " => ", doc.data());
+                //console.log(doc.id, " => ", doc.data());
                 carreras.push({
                     key: doc.id,
                     doc, 
@@ -56,60 +44,26 @@ class HelloFirebase extends Component {
                     editionYear
                 });
                 console.log('carreras',carreras);
-                
             });
+            console.log('carreras3',carreras);
             this.setState({
                 carreras,
                 isLoading: False
             })
+            //console.log('Carreras en el State',this.state.carreras);
         });
         return(
-            <Container>
-                {/* <Header>
-                    <Left>
-                        <Button transparent>
-                            <Icon name='menu' />
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Header</Title>
-                    </Body>
-                    <Right />
-                </Header>*/}
-                <Content>
-                <Content>
-                    {/* <Input
-                        value={this.state.nuevo}
-                        placeholder='Que otra cosa necesitas?'
-                        onChangeText={nuevo=>this.setState({nuevo})}
-                        /> */}
-                    <View style={styles.container}>
-                    <ListComponent
-                        lista={this.state.carreras}
-                        changeDone={this.changeDone}
-                        borrar={this.borrar}
-                        />
-                    </View>
-                </Content>
-                    <View style={styles.container}>
-                        <ListComponent
-                            lista={this.state.lista}
-                            changeDone={this.changeDone}
-                            />
-                    </View>
-                </Content>
-                <Footer>  
-                    <FooterTab>
-                        <Button 
-                            full
-                            onPress={this.agregarItem}
-                        >
-                            <Text>Agregar</Text>
-                                </Button>
-                    </FooterTab>
-                </Footer>  */}
-            </Container>
-        );
+            <View style={{
+                flex:1,
+                marginTop:30
+            }}>
+            <Text>Carreras Atléticas MX</Text>
+                 
+
+            </View>
+
+
+        )
     }
 }
 
