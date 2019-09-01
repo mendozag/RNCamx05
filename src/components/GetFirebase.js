@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';  
 import React, { Component } from 'react';  
-import { View, Text, StyleSheet, FlatList } from 'react-native';  
+import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native';  
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Input } from 'native-base';  
 //import ListComponent from './ListComponent';
 import "firebase/firestore"
@@ -22,20 +22,34 @@ import "firebase/firestore"
 
 class HelloFirebase extends Component {
 
-    constructor(){  
+    constructor(){
+        console.log('entra al constructor');
         super();
+        this.unsubscribe = null;
         this.state = {
             isLoading: true,
             carreras: []
         };
     }
-    render(){
-        console.log('Entra después del constructor');
-        var carreras = firebase.firestore().collection('carreras').get().then(function(querySnapshot) {
+
+ /*    componentDidMount() {
+        console.log('ComponentDidMount');
+        db=firebase.firestore(firebaseApp);
+        console.log('db esta',db.collection('carreras'));
+        db.collection('carreras').onSnapshot(function(doc){
+            console.log("Current Data: ", doc);
+            this.unsubscribe = doc;
+        })
+      } */
+
+    componentDidMount = (querySnapshot) => {
+        console.log('Entra onCollectionUpdate');
+        db=firebase.firestore(firebaseApp);
+        var carreras = db.collection('carreras').get().then(function(querySnapshot) {
             const carreras = [];
             querySnapshot.forEach(function(doc) {
                 const { title, description, editionYear} = doc.data();
-                //console.log(doc.id, " => ", doc.data());
+                console.log(doc.id, " => ", doc.data());
                 carreras.push({
                     key: doc.id,
                     doc, 
@@ -43,15 +57,26 @@ class HelloFirebase extends Component {
                     description,
                     editionYear
                 });
-                console.log('carreras',carreras);
+                //console.log('carreras',carreras);
             });
             console.log('carreras3',carreras);
             this.setState({
                 carreras,
                 isLoading: False
             })
-            //console.log('Carreras en el State',this.state.carreras);
+            console.log('Carreras en el State');
         });
+    }
+
+    render(){
+        if(this.state.isLoading){
+            console.log('En el if State');
+            return(
+              <View style={styles.activity}>
+                <ActivityIndicator size="large" color="#0000ff"/>
+              </View>
+            )
+          }
         return(
             <View style={{
                 flex:1,
@@ -67,13 +92,34 @@ class HelloFirebase extends Component {
     }
 }
 
-const styles = StyleSheet.create({  
+/* const styles = StyleSheet.create({  
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'stretch',
     }
-});
+}); */
+
+const styles = StyleSheet.create({
+    container: {
+     flex: 1,
+     paddingBottom: 22
+    },
+    item: {
+      padding: 10,
+      fontSize: 18,
+      height: 44,
+    },
+    activity: {
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0,
+      alignItems: 'center',
+      justifyContent: 'center'
+    }
+  })
 
 //export const firestore = firebase.firestore()
 export default HelloFirebase;

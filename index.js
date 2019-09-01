@@ -10,4 +10,6 @@ import BasicFlatList  from "./src/components/BasicFlatList";
 //import HelloFirebase from "./src/components/HelloFirebase";
 import GetFirebase from "./src/components/GetFirebase";
 
+console.ignoredYellowBox = ['react-native BugReporting extraData:'];
+
 AppRegistry.registerComponent(appName, () => GetFirebase);
