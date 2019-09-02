@@ -28,8 +28,10 @@ class HelloFirebase extends Component {
         this.unsubscribe = null;
         this.state = {
             isLoading: true,
-            carreras: []
+            prueba: 'CAMX State',
+            allCarreras: []
         };
+        //console.log('State',this.state);
     }
 
  /*    componentDidMount() {
@@ -43,13 +45,15 @@ class HelloFirebase extends Component {
       } */
 
     componentDidMount = (querySnapshot) => {
-        console.log('Entra onCollectionUpdate');
+        //console.log('State 2',this.state);
+        //console.log('Entra onCollectionUpdate');
         db=firebase.firestore(firebaseApp);
+        //console.log('State 4',this.state);
         var carreras = db.collection('carreras').get().then(function(querySnapshot) {
             const carreras = [];
             querySnapshot.forEach(function(doc) {
                 const { title, description, editionYear} = doc.data();
-                console.log(doc.id, " => ", doc.data());
+                //console.log(doc.id, " => ", doc.data());
                 carreras.push({
                     key: doc.id,
                     doc, 
@@ -57,20 +61,23 @@ class HelloFirebase extends Component {
                     description,
                     editionYear
                 });
-                console.log('carreras',carreras);
+                //console.log('carreras',carreras);
             });
-            console.log('carreras3',carreras);
-            this.setState({
-                carreras: carreras,
-                isLoading: false
-            });
-            console.log('Carreras en el State');
+            //console.log('carreras3',carreras);
         });
+        //console.log('State 11',this.state);
+        this.setState({
+            allCarreras: carreras,
+            isLoading: false
+        });
+        //console.log('State 12',this.state);
     }
 
     render(){
+        //console.log('State 9',this.state);
         if(this.state.isLoading){
-            console.log('En el if State');
+            //console.log('State 10',this.state);
+            //console.log('En el if State');
             return(
               <View style={styles.activity}>
                 <ActivityIndicator size="large" color="#0000ff"/>
@@ -82,7 +89,7 @@ class HelloFirebase extends Component {
                 flex:1,
                 marginTop:30
             }}>
-            <Text>Carreras Atléticas MX</Text>
+            <Text>{this.state.prueba}</Text>
                  
 
             </View>
