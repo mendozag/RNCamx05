@@ -14,6 +14,12 @@ let firebaseConfig ={
     };
 
 class FlatListenItem extends Component {
+    constructor(props) {
+      super(props)
+      this.state = {
+         
+      };
+    };
     
     
     //componentWillMount() {
@@ -29,8 +35,10 @@ class FlatListenItem extends Component {
         }
         //var database = firebaseConfig.database();
         var carreras = Firebase.database().ref('/carreras');
-        console.log("carreras",firebase.database().ref('/carreras'));
+        console.log("carreras: ",Firebase.database().ref('/carreras'));
+        console.log(carreras.title);
         
+
         return(
             <Text>"Hola Firebase"</Text>
         )

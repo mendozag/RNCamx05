@@ -20,11 +20,12 @@ import "firebase/firestore"
 } */
 
 
-class HelloFirebase extends Component {
+class GetFirebase extends Component {
 
     constructor(){
         console.log('entra al constructor');
         super();
+        const carreras2=[];
         this.unsubscribe = null;
         this.state = {
             isLoading: true,
@@ -49,10 +50,13 @@ class HelloFirebase extends Component {
         //console.log('Entra onCollectionUpdate');
         db=firebase.firestore(firebaseApp);
         //console.log('State 4',this.state);
-        var carreras = db.collection('carreras').get().then(function(querySnapshot) {
+        var carrerasFb = db.collection('carreras').get().then(function(querySnapshot) {
             const carreras = [];
+            var count = 0;
             querySnapshot.forEach(function(doc) {
                 const { title, description, editionYear} = doc.data();
+                count = count + 1;
+                //console.log("cuenta", count);                
                 //console.log(doc.id, " => ", doc.data());
                 carreras.push({
                     key: doc.id,
@@ -61,29 +65,45 @@ class HelloFirebase extends Component {
                     description,
                     editionYear
                 });
-                //console.log('carreras',carreras);
+                console.log('carreras',carreras);
             });
-            //console.log('carreras3',carreras);
+            //console.log('carreras numero3',carreras);
+            //console.log('State 25', this.state);
         });
-        //console.log('State 11',this.state);
+        console.log('State 11',this.state);
+        console.log('carrerasFuera => ', carrerasFb);
+        
+        //this.changeState('hola');
+        console.log('State 12',this.state);
+    }
+
+    changeState(array){
+
+        console.log('State 20',this.state);
+        
+        
         this.setState({
-            allCarreras: carreras,
+            prueba: 'CAMX TRES State',
             isLoading: false
         });
-        //console.log('State 12',this.state);
+        console.log('State 21',this.state);
     }
 
     render(){
-        //console.log('State 9',this.state);
+        var count2 = 0;
+        console.log('State 9',this.state);
+        this.count2 = this.count2 +1;
+        console.log('count2',count2);
+
         if(this.state.isLoading){
-            //console.log('State 10',this.state);
+            console.log('State 10',this.state);
             //console.log('En el if State');
             return(
               <View style={styles.activity}>
                 <ActivityIndicator size="large" color="#0000ff"/>
               </View>
             )
-          }
+          } 
         return(
             <View style={{
                 flex:1,
@@ -129,7 +149,7 @@ const styles = StyleSheet.create({
   })
 
 //export const firestore = firebase.firestore()
-export default HelloFirebase;
+export default GetFirebase;
 
 const firebaseConfig = {  
         apiKey: "AIzaSyAX-G1FkPKL8x0_h27OUFQnCQPKj8mVLz0",
