@@ -1,9 +1,23 @@
 import * as firebase from 'firebase';
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, FlatList } from 'react-native';
+import { AppRegistry, View, Text, StyleSheet, ActivityIndicator, FlatList, ListItem } from 'react-native';
 import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Input } from 'native-base';
 //import ListComponent from './ListComponent';
 import "firebase/firestore"
+
+class FlatListItem extends Component{
+    render() {
+        return(
+            <View style={{
+                flex: 1,
+                backgroundColor: this.props.index % 2 == 0 ? 'mediumseagreen' : 'tomato'
+            }}>
+                <Text>{this.props.item.title}</Text>
+                <Text>{this.props.item.birthyear}</Text>
+            </View>
+        );
+    }
+}
 
 class GetFirebase3 extends Component {
     constructor() {
@@ -71,16 +85,26 @@ class GetFirebase3 extends Component {
         }
         return (
              <View style={styles.container}>
-                <FlatList
+                {/* <FlatList
                     data={[{ key: 'primera linea' }, { key: 'segunda linea' }]}
                     renderItem={({ item }) => <Text style={{ color: 'black' }}>{item.key}</Text>}
-                />
-
+                /> */}
+                <FlatList
+                    data={this.state.carreras}
+                    renderItem={({ item, index }) => {
+                        console.log(`Item= ${JSON.stringify(item)}, index=${index}`);
+                        return(
+                            <FlatListItem item={item} index={index}>
+                                
+                            </FlatListItem>
+                        );
+        
+                    }}
+                />  
             </View>
         )
     }
 }
-
 
 const styles = StyleSheet.create({
     container: {
