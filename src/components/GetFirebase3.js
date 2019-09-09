@@ -10,7 +10,8 @@ class FlatListItem extends Component{
         return(
             <View style={{
                 flex: 1,
-                backgroundColor: this.props.index % 2 == 0 ? 'mediumseagreen' : 'tomato'
+                backgroundColor: this.props.index % 2 == 0 ? 'mediumseagreen' : 'tomato',
+                padding:10
             }}>
                 <Text>{this.props.item.title}</Text>
                 <Text>{this.props.item.birthyear}</Text>
@@ -50,22 +51,12 @@ class GetFirebase3 extends Component {
         db.collection('carreras').get().then((snapshot) => {
             console.log('Entró al GET');
             console.log('SnapShot => ', snapshot.docs);
-            //    console.log('Carreras Inicializarla: ',carreras);
-            //    var count = 0;
-            //    console.log('count',count);
             var carrerasArray = [];
-            
             snapshot.docs.forEach(doc => {
                 console.log(doc.data());
                 carrerasArray.push(doc.data())
-               // console.log(JSON.parse(doc.data().toString()));
-                //const { title, description, editionYear} = doc.data();
-                //console.log('Title: ', title);
-                //console.log('Description: ', description);
-                //console.log('editionYear: ', editionYear);
             });
-            console.log('Carreras Array ',carrerasArray);
-            
+            console.log('Carreras Array ',carrerasArray);            
             this.setState({
                 isLoading: false,
                 carreras: carrerasArray
@@ -109,8 +100,8 @@ class GetFirebase3 extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        //justifyContent: 'center',
+        //alignItems: 'center',
         backgroundColor: 'gray',
         paddingBottom: 22,
         paddingTop: 100,
