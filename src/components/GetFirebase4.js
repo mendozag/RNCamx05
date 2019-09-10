@@ -1,17 +1,47 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, Text, StyleSheet, ActivityIndicator, FlatList, ListItem } from 'react-native';
+import { AppRegistry, Image, View, Text, StyleSheet, ActivityIndicator, FlatList, ListItem } from 'react-native';
 import flatListData  from "./FlatListData";
+import { material } from 'react-native-typography';
 
 class FlatListItem extends Component{
     render() {
+        console.log('URL => ', material.url);
+        
         return(
             <View style={{
                 flex: 1,
-                backgroundColor: this.props.index % 2 == 0 ? 'whitesmoke' : 'white',
-                padding:10
+                backgroundColor: this.props.index % 2 == 0 ? 'gray' : 'white',
+                flexDirection: 'column'
             }}>
-                <Text>{this.props.item.title}</Text>
-                <Text>{this.props.item.birthyear}</Text>
+                <View style={{
+                    flex:3,
+                    height:150,
+                    padding:10
+                }}>
+                    <Image
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            bottom: 0,
+                            right: 0,
+                            }}
+                        source={{uri: this.props.item.url}}
+                    />
+                </View>
+                <View style={{
+                    padding:10,
+                    flexDirection: 'row'
+                }}>
+                <View style={{
+                    padding:10,
+                    flexDirection: 'row'
+                }}>
+                    <Text style={material.title}>{this.props.item.distance}</Text>
+                </View>
+                    <Text style={material.title}>{this.props.item.edition} {this.props.item.title} {this.props.item.editionYear}</Text>
+                    <Text style={material.subheading}>{this.props.item.mapa.ubicacion.area},{this.props.item.mapa.ubicacion.city}</Text>
+                </View>
             </View>
         );
     }
