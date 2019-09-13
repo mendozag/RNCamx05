@@ -8,8 +8,8 @@ import {name as appName} from './app.json';
 import ViewPage from "./src/components/ViewPage";
 import BasicFlatList  from "./src/components/BasicFlatList";
 //import HelloFirebase from "./src/components/HelloFirebase";
-import GetFirebase4 from "./src/components/GetFirebase4";
+import GetFirebase5 from "./src/components/GetFirebase5";
 
 console.ignoredYellowBox = ['react-native BugReporting extraData:'];
 
-AppRegistry.registerComponent(appName, () => GetFirebase4);
+AppRegistry.registerComponent(appName, () => GetFirebase5);
