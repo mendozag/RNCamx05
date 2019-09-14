@@ -76,7 +76,6 @@ class GetFirebase5 extends Component {
                     data={flatListData}
                     keyExtractor={(item,index) => index.toString()}
                     renderItem={({ item }) => <Card item={item} />}
-                    //renderItem{({ item }) => <Card item={item}/>}
                 />
         )
     }
@@ -85,7 +84,7 @@ class GetFirebase5 extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 20,
+        marginTop: 80,
         backgroundColor: '#F5FCFF'
     }
 })
