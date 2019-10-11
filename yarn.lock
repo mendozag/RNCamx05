@@ -5943,6 +5943,13 @@ react-native-keyboard-aware-scroll-view@0.9.1:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
+react-native-material-cards@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/react-native-material-cards/-/react-native-material-cards-1.0.9.tgz#fe200c3b9551abae346e231c10abea662cec48f7"
+  integrity sha512-TscOwr+oaFqhBfeekQ5YXKV6rZkFvyqKGlxHYaIC4juPAV3qn1k0lOMKS7H9l6ag9jSDeKV6kqpSPOgiL7NQEQ==
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-paper@^2.16.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-2.16.0.tgz#5a9edd5615bb010ec0d29cbfd5524c2944b2505d"
