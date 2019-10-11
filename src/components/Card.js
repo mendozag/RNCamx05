@@ -42,7 +42,7 @@ class Card extends React.PureComponent {
                                 <Text style={{
                                     fontSize:32,
                                     fontWeight:'bold',
-                                    color:'black'
+                                    color:'red'
                                 }}>{dayCard}</Text>
                                 <Text style={{
                                     fontSize:16,
