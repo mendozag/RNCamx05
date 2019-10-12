@@ -6,6 +6,7 @@ import {
     StyleSheet, 
     TouchableOpacity 
 } from 'react-native';
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 
 class Card extends React.PureComponent {
@@ -21,6 +22,7 @@ class Card extends React.PureComponent {
         console.log('Mes: ', monthCard);
         var dayCard = dateaqui.getDate();
         console.log('Numero Dia: ', dayCard);
+        console.log('URL: ',this.props.item.url);
         
 
 
@@ -55,6 +57,7 @@ class Card extends React.PureComponent {
                                 flexDirection: 'column'
                             }}>
                                 <View>
+                                    <Icon name="map" size={30}/>
                                     <Text style={styles.cardTextTitle}>{this.props.item.edition} {this.props.item.title} {this.props.item.editionYear}</Text>
                                 </View>
                                 <View>
