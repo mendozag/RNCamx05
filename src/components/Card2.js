@@ -29,7 +29,7 @@ class Card2 extends React.PureComponent {
                 <View >
                     <Card.Cover source={{ uri: this.props.item.url }} />    
                     <Card.Content>
-                        {/* <Title>Card title</Title> */}
+                        <Title>{this.props.item.key}</Title>
                         <Paragraph style={styles.descriptionCard}>{trunc}</Paragraph>
                     </Card.Content>
                 </View>
