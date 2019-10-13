@@ -1,23 +1,29 @@
 import React, { Component } from 'react';
-import { 
-    AppRegistry, 
-    Image, 
-    View, 
-    Text, 
-    StyleSheet, 
-    ActivityIndicator, 
+import { Appbar } from 'react-native-paper';
+import {
+    AppRegistry,
+    Image,
+    View,
+    Text,
+    StyleSheet,
+    Fragment,
+    ScrollView,
+    ActivityIndicator,
     FlatList,
     TouchableOpacity,
-    ListItem 
+    ListItem
 } from 'react-native';
-import flatListData  from "./FlatListData";
+import flatListData from "./FlatListData";
 import { material } from 'react-native-typography';
-import Card from './Card';
+import Card2 from './Card2';
+import Card3 from './Card3';
+import { Container } from 'native-base';
+import { SearchBar } from 'react-native-elements';
 
 // class FlatListItem extends Component{
 //     render() {
 //         console.log('URL => ', material.url);
-        
+
 //         return(
 //             <View style={{
 //                 flex: 1,
@@ -69,14 +75,43 @@ import Card from './Card';
                     }} */}
 
 class GetFirebase5 extends Component {
+    _goBack = () => console.log('Went back');
+    _onSearch = () => console.log('Searching');
+    _onMore = () => console.log('Shown more');
+
+    renderHeader = () => {
+        return <SearchBar placeholder="Busca carrera..." lightThem round/>;
+    }
+
     render() {
         return (
+
+            <Container style={styles.container}>
+                <Appbar.Header>
+                    <Appbar.BackAction
+                        onPress={this._goBack}
+                    />
+                    <Appbar.Content
+                        title="Title"
+                        subtitle="Subtitle"
+                    />
+                    <Appbar.Action icon="search" onPress={this._onSearch} />
+                    <Appbar.Action icon="more-vert" onPress={this._onMore} />
+                </Appbar.Header>
                 <FlatList
-                    style={styles.container}
                     data={flatListData}
-                    keyExtractor={(item,index) => index.toString()}
-                    renderItem={({ item }) => <Card item={item} />}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item }) => item.destacado == "2" ?
+                        <View>
+                            <Card2 item={item} />
+                        </View> :
+                        <View>
+                            <Card3 item={item} />
+                        </View>
+                    }
+                    ListHeaderComponent={this.renderHeader}
                 />
+            </Container>
         )
     }
 }
@@ -84,10 +119,23 @@ class GetFirebase5 extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 80,
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#45425A'
+    },
+    card3: {
+        marginBottom: 10
     }
 })
 
 //export const firestore = firebase.firestore()
 export default GetFirebase5;
+
+{/* <Container style={styles.container}>
+            <Appbar.Header>
+                <Appbar.Content title="Title" subtitle="Subtitle" />
+            </Appbar.Header>
+                <FlatList
+                    data={flatListData}
+                    keyExtractor={(item,index) => index.toString()}
+                    renderItem={({ item }) => <Card3  item={item} />}
+                />
+            </Container> */}
