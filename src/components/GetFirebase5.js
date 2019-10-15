@@ -112,7 +112,7 @@ class GetFirebase5 extends Component {
                         onPress={this._goBack}
                     />
                     <Appbar.Content
-                        title="Title"
+                        title="Carreras Atléticas MX"
                     />
                     <Appbar.Action icon="search" onPress={this._onSearch} />
                     <Appbar.Action icon="more-vert" onPress={this._onMore} />
