@@ -75,35 +75,15 @@ import { SearchBar } from 'react-native-elements';
                     }} */}
 
 class GetFirebase5 extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            loading: false,
-            data2:[],
-            error: null,
-            query:"",
-            fullData: [],
-        };
-    }
-
     _goBack = () => console.log('Went back');
     _onSearch = () => console.log('Searching');
     _onMore = () => console.log('Shown more');
-    
-    handleSearch = (text) => {
-        console.log("Search text:", text);
-        
-        this.setState({ query: text });
-    };
 
     renderHeader = () => {
-        return <SearchBar placeholder="Busca carrera..." lightThem round onChangeText={this.handleSearch}/>;
-    };
+        return <SearchBar placeholder="Busca carrera..." lightThem round/>;
+    }
 
     render() {
-        //const { partners, onPartnerDetails } = props;
-
         return (
 
             <Container style={styles.container}>
@@ -113,13 +93,13 @@ class GetFirebase5 extends Component {
                     />
                     <Appbar.Content
                         title="Title"
+                        subtitle="Subtitle"
                     />
                     <Appbar.Action icon="search" onPress={this._onSearch} />
                     <Appbar.Action icon="more-vert" onPress={this._onMore} />
                 </Appbar.Header>
-                
                 <FlatList
-                    data={flatListData.sort((a, b) => String(a.date.seconds).localeCompare(String(b.date.seconds)))}
+                    data={flatListData}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) => item.destacado == "2" ?
                         <View>
@@ -129,8 +109,7 @@ class GetFirebase5 extends Component {
                             <Card3 item={item} />
                         </View>
                     }
-                    
-                    ListHeaderComponent = {this.renderHeader}
+                    ListHeaderComponent={this.renderHeader}
                 />
             </Container>
         )
@@ -160,7 +139,3 @@ export default GetFirebase5;
                     renderItem={({ item }) => <Card3  item={item} />}
                 />
             </Container> */}
-                                {/* ListHeaderComponent={this.renderHeader} */}
-                                // data={flatListData.sort((a, b) => a.title.localeCompare(b.title))}
-                                // data={flatListData.sort((a, b) => String(a.date.seconds).localeCompare(String(b.date.seconds)))}
-
