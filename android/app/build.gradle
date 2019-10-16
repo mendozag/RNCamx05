@@ -89,7 +89,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "com.facebook.react:react-native:0.20.1"  // From node_modules
+    implementation "com.facebook.react:react-native:0.20.1" 
+    implementation project(':react-native-maps') // From node_modules
     if (enableHermes) {
       def hermesPath = "../../node_modules/hermesvm/android/";
       debugImplementation files(hermesPath + "hermes-debug.aar")
