@@ -18,6 +18,7 @@ import {
 import { Container } from 'native-base';
 import { SearchBar } from 'react-native-elements';
 import { black } from 'ansi-colors';
+import MapView, { Marker } from 'react-native-maps'
 
 
 
@@ -169,6 +170,25 @@ class CarreraDetail extends Component {
                         </View>
                     </View>
                     {/* ##### FIN RENGLON ##### */}
+                    {/* ##### INICIO MAPA ##### */}
+                    <View style={styles.containerMap}>
+                        <MapView
+                            style={styles.map}
+                            initialRegion={{
+                                latitude: CarreraDetailData[0].mapa.ubicacion.mapPosition.lat,
+                                longitude: CarreraDetailData[0].mapa.ubicacion.mapPosition.lng,
+                                latitudeDelta: 0.005,
+                                longitudeDelta: 0.005
+                            }}
+                        >
+                            <Marker coordinate={{
+                                latitude: CarreraDetailData[0].mapa.ubicacion.markerPosition.lat,
+                                longitude: CarreraDetailData[0].mapa.ubicacion.markerPosition.lng 
+                            }}>
+                            </Marker>
+                        </MapView>
+                    </View>
+                    {/* ##### FIN MAPA ##### */}
                     {/* ##### INICIA RENGLON DESCRIPCION ##### */}
                     <Divider />
                     <View style={styles.renglon1}>
@@ -251,7 +271,13 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 140,
         resizeMode: 'cover'
-    }
+    },
+    containerMap: {
+        height: 200
+    },
+    map: {
+        height: 200
+    },
 })
 
 export default CarreraDetail;

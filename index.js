@@ -10,6 +10,7 @@ import BasicFlatList  from "./src/components/BasicFlatList";
 //import HelloFirebase from "./src/components/HelloFirebase";
 import GetFirebase5 from "./src/components/GetFirebase5";
 import CarreraDetail from "./src/components/CarreraDetail";
+import Map from "./src/components/Map"
 
 console.ignoredYellowBox = ['react-native BugReporting extraData:'];
 
