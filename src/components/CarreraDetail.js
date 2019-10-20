@@ -20,10 +20,6 @@ import { SearchBar } from 'react-native-elements';
 import { black } from 'ansi-colors';
 import MapView, { Marker } from 'react-native-maps'
 
-
-
-
-
 class CarreraDetail extends Component {
     render() {
         //const { partners, onPartnerDetails } = props;
@@ -223,10 +219,7 @@ class CarreraDetail extends Component {
                         </View>
                     </View>
                     {/* ##### FIN RENGLON ##### */}
-
-
                 </ScrollView>
-
             </Container>
         )
     }
