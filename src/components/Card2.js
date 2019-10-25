@@ -7,7 +7,8 @@ import Icon from "react-native-vector-icons/MaterialIcons";
 class Card2 extends React.PureComponent {
     render() {
         // var dateCard = this.props.item.date;
-        var months = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
+         var months = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
+        
         const timestamp = this.props.item.date.seconds;
         console.log('Timestamp: ',timestamp);
         const dateaqui = new Date(timestamp * 1000);

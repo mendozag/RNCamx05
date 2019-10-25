@@ -27,18 +27,6 @@ import MapView, { Marker } from 'react-native-maps'
 class CarreraDetail extends Component {
     render() {
         //const { partners, onPartnerDetails } = props;
-        var months = ["ENE","FEB","MAR","ABR","MAY","JUN","JUL","AGO","SEP","OCT","NOV","DIC"];
-        const timestamp = CarreraDetailData[0].date.seconds;
-        console.log('Timestamp: ',timestamp);
-        const dateaqui = new Date(timestamp * 1000);
-        console.log('Date', dateaqui );
-        var monthCard = months[dateaqui.getMonth()];
-        console.log('Mes: ', monthCard);
-        var dayCard = dateaqui.getDate();
-        var yearCard = dateaqui.getUTCFullYear();
-        console.log('Numero Dia: ', dayCard);
-        
-
         return (
 
             <Container style={styles.container}>
@@ -53,7 +41,7 @@ class CarreraDetail extends Component {
                     <Appbar.Action icon="more-vert" onPress={this._onMore} />
                 </Appbar.Header>
 
-                <Image style={styles.detailsImage} source={{ uri: CarreraDetailData[0].url }} />
+                <Image style={styles.detailsImage} source={{ uri: "https://firebasestorage.googleapis.com/v0/b/camx-f7ee7.appspot.com/o/imagenescarreras%2Fyuyin.jpg?alt=media&token=70cca63a-e268-495d-ace8-a8cbd2f10c37" }} />
                 <View style={{
                     paddingLeft: 10,
                     flexDirection: 'row'
@@ -70,19 +58,19 @@ class CarreraDetail extends Component {
                                 fontSize: 32,
                                 fontWeight: 'bold',
                                 color: 'red'
-                            }}>{dayCard}</Text>
+                            }}>21</Text>
                             <Text style={{
                                 fontSize: 16,
                                 marginTop: -8,
                                 fontWeight: 'bold',
                                 color: 'gray'
-                            }}>{monthCard}</Text>
+                            }}>SEP</Text>
                             <Text style={{
                                 fontSize: 12,
                                 fontWeight: 'bold',
                                 marginTop: -4,
                                 color: 'black'
-                            }}>{yearCard}</Text>
+                            }}>2019</Text>
                         </View>
                         <View style={{
                             paddingLeft: 10,
@@ -132,9 +120,43 @@ class CarreraDetail extends Component {
                         </View>
                     </View>
                     {/* ##### FIN RENGLON ##### */}
-                    
-                    
-                    
+                    {/* ##### INICIA RENGLON ##### */}
+                    <Divider />
+                    <View style={styles.renglon1}>
+                        <View >
+                            <Text style={styles.viewTextLink} onPress={() => Linking.openURL('http://google.com')}>Inscripciones en Línea</Text>
+                        </View>
+                    </View>
+                    {/* ##### FIN RENGLON ##### */}
+                    {/* ##### INICIA RENGLON ##### */}
+                    <Divider />
+                    <View style={styles.renglon1}>
+                        <View style={styles.celdaIzq}>
+                            <Text style={styles.textoCeldaIzq}>En línea:</Text>
+                        </View>
+                        <View style={styles.celdaDer}>
+                            <View style={styles.viewTextCelDer}>
+                                <Text style={styles.textoCeldaDer}>{CarreraDetailData[0].registerUrl}</Text>
+                            </View>
+                        </View>
+                    </View>
+                    {/* ##### FIN RENGLON ##### */}
+                    {/* ##### INICIA RENGLON ##### */}
+                    <Divider />
+                    <View style={styles.renglon1}>
+                        <View >
+                            <Text style={styles.viewTextLink} onPress={() => Linking.openURL('http://google.com')}>Ir a facebook del organizador</Text>
+                        </View>
+                    </View>
+                    {/* ##### FIN RENGLON ##### */}
+                    {/* ##### INICIA RENGLON ##### */}
+                    <Divider />
+                    <View style={styles.renglon1}>
+                        <View >
+                            <Text style={styles.viewTextLink} onPress={() => Linking.openURL('http://google.com')}>Ir a web del organizador</Text>
+                        </View>
+                    </View>
+                    {/* ##### FIN RENGLON ##### */}
                     {/* ##### INICIA RENGLON ##### */}
                     <Divider />
                     <View style={styles.renglon1}>
@@ -175,51 +197,6 @@ class CarreraDetail extends Component {
                             <View style={styles.viewTextCelDer}>
                                 <Text style={{}}>{CarreraDetailData[0].description}</Text>
                             </View>
-                        </View>
-                    </View>
-                    {/* ##### FIN RENGLON ##### */}
-                    {/* ##### INICIA RENGLON ##### */}
-                    <Divider />
-                    <View style={styles.renglon1}>
-                        <View style={styles.celdaIzq}>
-                            <Text style={styles.textoCeldaIzq}>Más Información:</Text>
-                        </View>
-                        <View style={styles.celdaDer}>
-                            <View style={styles.viewTextCelDer}>
-                                
-                            </View>
-                        </View>
-                    </View>
-                    {/* ##### FIN RENGLON ##### */}
-                    {/* ##### INICIA RENGLON ##### */}
-                    <Divider />
-                    <View style={styles.renglon1}>
-                        <View >
-                            <Text style={styles.viewTextLink} onPress={() => Linking.openURL(CarreraDetailData[0].registerUrl)}>Inscribirme en Línea</Text>
-                        </View>
-                    </View>
-                    {/* ##### FIN RENGLON ##### */} 
-                    {/* ##### INICIA RENGLON ##### */}
-                    <Divider />
-                    <View style={styles.renglon1}>
-                        <View >
-                            <Text style={styles.viewTextLink} onPress={() => Linking.openURL(CarreraDetailData[0].web)}>Abrir web del organizador</Text>
-                        </View>
-                    </View>
-                    {/* ##### FIN RENGLON ##### */}
-                    {/* ##### INICIA RENGLON ##### */}
-                    <Divider />
-                    <View style={styles.renglon1}>
-                        <View >
-                            <Text style={styles.viewTextLink} onPress={() => Linking.openURL(CarreraDetailData[0].facebook)}>Abrir facebook del organizador</Text>
-                        </View>
-                    </View>
-                    {/* ##### FIN RENGLON ##### */}
-                    {/* ##### INICIA RENGLON ##### */} 
-                    <Divider />
-                    <View style={styles.renglon1}>
-                        <View >
-                            <Text style={styles.viewTextLink} onPress={() => Linking.openURL(CarreraDetailData[0].web)}>Abrir web del organizador</Text>
                         </View>
                     </View>
                     {/* ##### FIN RENGLON ##### */}
